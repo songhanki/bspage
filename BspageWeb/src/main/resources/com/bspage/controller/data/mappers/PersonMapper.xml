@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bspage.controller.data.mappers.PersonMapper">
+
+	<select id="personCount" resultType="int">
+		select count(*) from person_tb
+	</select>
+	
+	<select id="personFullList" resultType="hashMap">
+		select * from person_tb
+	</select>
+	
+	<!-- 
+	<insert id="boardInsert">
+		insert into person_tb (title, creator_id, b_comment)
+		values (#{title}, #{creator_id}, #{b_comment})
+	</insert>
+	 -->
+
+</mapper>
+
+
+
+
