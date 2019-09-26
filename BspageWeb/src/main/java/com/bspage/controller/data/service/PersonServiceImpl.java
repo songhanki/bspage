@@ -1,6 +1,8 @@
 package com.bspage.controller.data.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,10 +26,22 @@ public class PersonServiceImpl implements PersonService{
 		return mapper.personFullList();
 	}
 	
+	public List<PersonVO> personSelectOne(String seq) {
+		return mapper.personSelectOne(seq);
+	}
+	
 	//CRUD(Create Read Update Delete)
 	//게시글 생성
-	public void personInsert(PersonVO board) {
-		//return mapper.boardInsert(board);
+	public String personInsert(PersonVO board) {
+		//return mapper.personInsert(board);
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("p_id", board.getP_id());
+		map.put("p_pw", board.getP_pw());
+		map.put("p_nm", board.getP_nm());
+		
+		mapper.personInsert(map);
+		return "success";
 	}
 	
 	//게시글 수정

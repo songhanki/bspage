@@ -11,12 +11,18 @@
 		select * from person_tb
 	</select>
 	
-	<!-- 
-	<insert id="boardInsert">
-		insert into person_tb (title, creator_id, b_comment)
-		values (#{title}, #{creator_id}, #{b_comment})
+	<select id="personSelectOne" parameterType="String" resultType="hashMap">
+		select * from person_tb where p_seq=#{seq}
+	</select>
+	
+	
+
+	<insert id="personInsert">
+		insert into person_tb (p_id, p_pw, p_nm, create_date, creator_id, p_type)
+		values (#{p_id}, #{p_pw}, #{p_nm}, now(), "master", "P")
 	</insert>
-	 -->
+	
+
 
 </mapper>
 

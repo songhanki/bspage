@@ -1,5 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 
 <html lang="kor">
   <head>
@@ -16,10 +18,11 @@
 	<div class="wrap">
 		<div class="container">
 			<h1>회원 생성</h1>
-			<form id="person_create" method="post">
+			<form id="person_mod" method="post">
+			<c:forEach var="list" items="${list}" varStatus="status">
  				<div class="form-group">
 					<label>아이디</label> 
-					<input type="text" class="form-control" id="id_input">
+					<input type="text" class="form-control" id="id_input" value='${list.p_id}' readonly="readonly">
 				</div>
 				<div class="form-group">
 					<label>패스워드</label> 
@@ -27,10 +30,11 @@
 				</div>
  				<div class="form-group">
 					<label>닉네임</label> 
-					<input type="text" class="form-control" id="nm_input">
+					<input type="text" class="form-control" id="nm_input" value='${list.p_nm}'>
 				</div>
+			</c:forEach>
 			</form>
-			<button type="button" class="btn btn-light" id="createperson">생성하기</button>
+			<button type="button" class="btn btn-light" id="modperson">수정하기</button>
 		</div>
 	</div>
 	<!-- Optional JavaScript -->
@@ -44,7 +48,7 @@
     	
 	<script type="text/javascript">
 
-		$('#createperson').on('click', function() {
+		$('#modperson').on('click', function() {
 			//var formData = $("#person_create").serialize();
 			var formData = {
 				"p_id" : $('#id_input').val() , 
@@ -54,13 +58,13 @@
 
 console.log("formData: "+formData);
 			$.ajax({
-				url : "/person_create/create",
+				url : "/person_mod/modify",
 				type : "POST",
 				data : formData,
 				async : true,
 				success : function(data) {
 					//var jsonObj = JSON.parse(data);
-					alert("아이디 생성 완료");
+					alert("정보 수정 완료");
 					location.href = '/person_list';
 				}, // success 
 
