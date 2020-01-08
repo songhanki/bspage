@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bspage.controller.data.mappers.CategoryMapper">
+
+	<select id="ctgrList" resultType="hashMap">
+		select 
+			ctgr_name, ctgr_lvl, ctgr_cd, ctgr_upper_cd, ctgr_seq
+		 from 
+		 	tb_ctgr
+	</select>
+	<!-- 
+	todo : tree 정렬 방식 생각
+	 -->
+	
+	<select id="ctgrDetail" parameterType="String" resultType="hashMap">
+		select 
+			ctgr_name, ctgr_lvl, ctgr_cd, ctgr_upper_cd, ctgr_seq
+		from 
+			tb_ctgr 
+		where
+			1=1
+			and ctgr_cd = #{ctgr_cd}
+	</select>
+	
+	<insert id="createUpperCtgr">
+		insert into tb_ctgr
+		(ctgr_name, ctgr_lvl, ctgr_cd, ctgr_upper_cd, ctgr_seq)
+		values(#{ctgr_name},1,#{ctgr_cd},"",1)
+	</insert>
+	
+	
+	<insert id="createLowerCtgr">
+	<!-- 
+		insert into person_tb (p_id, p_pw, p_nm, create_date, creator_id, p_type)
+		values (#{p_id}, #{p_pw}, #{p_nm}, now(), "master", "P")
+	-->
+	</insert>
+	
+
+
+</mapper>
+
+
+
+
